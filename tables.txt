@@ -1,0 +1,25 @@
+TABLE: Champions
+id:
+name:
+weight:
+org:
+
+TABLE: Organizations
+fullName:
+abbreviation:
+
+TABLE: WeightClasses
+class:
+
+CREATE TABLE champions (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   name VARCHAR ( 30 ),
+   weight VARCHAR ( 15 ),
+   org VARCHAR ( 5 ),
+);
+
+ 
+  INSERT INTO champions (name, weight, org)
+  VALUES 
+    ('Abdullah Mason', 'Light', 'WBO');
+  ;
