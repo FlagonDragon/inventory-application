@@ -15,11 +15,53 @@ CREATE TABLE champions (
    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
    name VARCHAR ( 30 ),
    weight VARCHAR ( 15 ),
-   org VARCHAR ( 5 ),
+   org VARCHAR ( 5 )
+);
+
+CREATE TABLE champions (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   name VARCHAR ( 30 )
+);
+
+ALTER TABLE Champions
+DROP COLUMN weight;
+
+CREATE TABLE weightClasses (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   class VARCHAR ( 30 ) 
+);
+
+CREATE TABLE organizations (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   fullName VARCHAR ( 50 ),
+   acronym VARCHAR (5)
 );
 
  
-  INSERT INTO champions (name, weight, org)
-  VALUES 
-    ('Abdullah Mason', 'Light', 'WBO');
-  ;
+INSERT INTO champions (name, weight, org)
+VALUES 
+  ('Abdullah Mason', 'Light', 'WBO');
+;
+
+INSERT INTO champions (name)
+VALUES 
+  ('Abdullah Mason');
+;
+
+INSERT INTO weightClasses (class) 
+VALUES
+  ('Super Welterweight'),
+  ('Welterweight'),
+  ('Super Lightweight'),
+  ('Lightweight'),
+  ('Super Featherweight'),
+  ('Featherweight'),
+  ('Super Bantamweight'),
+  ('Bantamweight');
+
+INSERT INTO organizations (fullName, acronym) 
+VALUES
+  ('World Boxing Association', 'WBA'),
+  ('World Boxing Council', 'WBC'),
+  ('International Boxing Federation', 'IBF'),
+  ('World Boxing Organization', 'WBO');

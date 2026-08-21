@@ -8,4 +8,12 @@ async function getChamps() {
 
 };
 
-module.exports = { getChamps };
+async function getOrgs() {
+
+  const { rows } = await pool.query("SELECT * FROM organizations");
+
+  return rows;
+
+};
+
+module.exports = { getChamps, getOrgs };
