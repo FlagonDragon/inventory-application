@@ -16,4 +16,12 @@ async function getOrgs() {
 
 };
 
-module.exports = { getChamps, getOrgs };
+async function getClasses() {
+
+  const { rows } = await pool.query("SELECT * FROM weightclasses");
+
+  return rows;
+
+};
+
+module.exports = { getChamps, getOrgs, getClasses };

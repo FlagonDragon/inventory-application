@@ -13,10 +13,11 @@ async function usersLog(req, res) {
 async function loadHome(req, res) {
 
   const orgs = await db.getOrgs();
+  const classes = await db.getClasses();
 
   console.log(orgs);
 
-  res.render("viewHome", {title: 'Organizations', categories: orgs})
+  res.render("viewHome", {title1: 'Organizations', categories1: orgs, title2: 'Weight Classes', categories2: classes })
 
 };
 

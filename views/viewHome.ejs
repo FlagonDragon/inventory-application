@@ -8,17 +8,35 @@
 
     <div class="container">
 
-      <h3><%= title %></h3> 
+      <h3><%= title1 %></h3> 
 
-      <% categories.forEach(category => { %>
+      <% categories1.forEach(category => { %>
 
         <a href="/<%=category.id%>">
 
           <div>
-            Org: <%=category.acronym%>
+            Organization: <%=category.acronym%>
           </div>
 
-        </div>
+        </a>
+
+      <% }); %>
+
+    </div>
+
+    <div class="container">
+
+      <h3><%= title2 %></h3> 
+
+      <% categories2.forEach(category => { %>
+
+        <a href="/<%=category.id%>">
+
+          <div>
+            Weight Class: <%=category.class%>
+          </div>
+
+        </a>
 
       <% }); %>
 
