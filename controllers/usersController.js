@@ -34,7 +34,7 @@ async function loadOrg(req, res) {
 
   console.log(champs);
 
-  res.send(`Organization ID: ${orgId}`);
+  res.render("viewCategory", { champs: champs })
 
 };
 
@@ -48,7 +48,7 @@ async function loadClass(req, res) {
 
   console.log(champs);
 
-  res.send(`Weight Class ID: ${classId}`);
+  res.render("viewCategory", { champs: champs })
 
 };
 

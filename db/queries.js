@@ -26,7 +26,7 @@ async function getClasses() {
 
 async function getChampsByOrg(orgId) {
 
-  const { rows } = await pool.query(`SELECT champions.name, organizations.acronym
+  const { rows } = await pool.query(`SELECT champions.id, champions.name, organizations.fullName
 FROM champions
 INNER JOIN champions_organizations
 ON champions.id = champions_organizations.champion_id
@@ -40,7 +40,7 @@ WHERE organizations.id = '${orgId}';`);
 
 async function getChampsByClass(classId) {
 
-  const { rows } = await pool.query(`SELECT champions.name, weightclasses.class
+  const { rows } = await pool.query(`SELECT champions.id, champions.name, weightclasses.class
 FROM champions
 INNER JOIN champions_weightclasses
 ON champions.id = champions_weightclasses.champion_id
