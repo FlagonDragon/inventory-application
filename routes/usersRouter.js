@@ -4,4 +4,9 @@ const usersRouter = Router();
 
 usersRouter.get("/", usersController.loadHome);
 
+usersRouter.get("/organization/:orgId", usersController.loadOrg);
+
+usersRouter.get("/weightclass/:classId", usersController.loadClass);
+
+
 module.exports = usersRouter;

@@ -11,6 +11,12 @@ abbreviation:
 TABLE: WeightClasses
 class:
 
+TABLE: champion_org
+id:
+champion_id:
+org_id:
+???
+
 CREATE TABLE champions (
    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
    name VARCHAR ( 30 ),
@@ -37,6 +43,17 @@ CREATE TABLE organizations (
    acronym VARCHAR (5)
 );
 
+CREATE TABLE champions_organizations (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   champion_id INTEGER,
+   organization_id INTEGER 
+);
+
+CREATE TABLE champions_weightclasses (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   champion_id INTEGER,
+   weightclass_id INTEGER 
+);
  
 INSERT INTO champions (name, weight, org)
 VALUES 
@@ -47,6 +64,16 @@ INSERT INTO champions (name)
 VALUES 
   ('Abdullah Mason');
 ;
+
+INSERT INTO champions (name)
+VALUES 
+  (''),
+  (''),
+  (''),
+  (''),
+  (''),
+  (''),
+  ('');
 
 INSERT INTO weightClasses (class) 
 VALUES
@@ -65,3 +92,66 @@ VALUES
   ('World Boxing Council', 'WBC'),
   ('International Boxing Federation', 'IBF'),
   ('World Boxing Organization', 'WBO');
+
+INSERT INTO champions_organizations (champion_id, organization_id) 
+VALUES
+  (4, 1),
+  (5, 2),
+  (6, 3),
+  (7, 4),
+  (8, 1),
+  (9, 2),
+  (10, 3),
+  (11, 4),
+  (12, 2),
+  (13, 3),
+  (14, 4);
+
+INSERT INTO champions_weightclasses (champion_id, weightclass_id) 
+VALUES
+  (12, 4),
+  (13, 4),
+  (14, 4);
+
+
+https://www.sqlteaching.com/#!multiple_joins
+SQL teaching multiple joins solution:
+
+SELECT character.name, actor.name
+FROM character
+INNER JOIN character_actor
+ON character.id = character_actor.character_id
+INNER JOIN actor
+ON character_actor.actor_id = actor.id;
+
+Multiple join example:
+https://teamtreehouse.com/community/sql-for-multiple-values-in-a-cell
+
+SELECT champions.name, organizations.acronym
+FROM champions
+INNER JOIN champions_organizations
+ON champions.id = champions_organizations.champion_id
+INNER JOIN organizations
+ON champions_organizations.organization_id = organizations.id;
+
+SELECT champions.name, weightclasses.class
+FROM champions
+INNER JOIN champions_weightclasses
+ON champions.id = champions_weightclasses.champion_id
+INNER JOIN weightclasses
+ON champions_weightclasses.weightclass_id = weightclasses.id;
+
+SELECT champions.name, organizations.acronym, weightclasses.class
+FROM champions
+INNER JOIN champions_weightclasses
+ON champions.id = champions_weightclasses.champion_id
+INNER JOIN weightclasses
+ON champions_weightclasses.weightclass_id = weightclasses.id
+INNER JOIN champions_organizations
+ON champions.id = champions_organizations.champion_id
+INNER JOIN organizations
+ON champions_organizations.organization_id = organizations.id;
+
+UPDATE champions
+SET name = 'Jaron Ennis'
+WHERE id = 1;

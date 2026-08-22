@@ -1,0 +1,29 @@
+<html>
+
+  <head>
+      <title>Inventory App</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <h3><%= title %></h3> 
+
+      <% categories1.forEach(category => { %>
+
+        <a href="/champion/<%=category.id%>">
+
+          <div>
+            Champion: <%=category.name%>
+          </div>
+
+        </a>
+
+      <% }); %>
+
+    </div>
+    
+  </body>
+
+</html>

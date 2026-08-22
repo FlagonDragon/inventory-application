@@ -24,4 +24,40 @@ async function getClasses() {
 
 };
 
-module.exports = { getChamps, getOrgs, getClasses };
+async function getChampsByOrg(orgId) {
+
+  const { rows } = await pool.query(`SELECT champions.name, organizations.acronym
+FROM champions
+INNER JOIN champions_organizations
+ON champions.id = champions_organizations.champion_id
+INNER JOIN organizations
+ON champions_organizations.organization_id = organizations.id
+WHERE organizations.id = '${orgId}';`);
+
+  return rows;
+
+};
+
+async function getChampsByClass(classId) {
+
+  const { rows } = await pool.query(`SELECT champions.name, weightclasses.class
+FROM champions
+INNER JOIN champions_weightclasses
+ON champions.id = champions_weightclasses.champion_id
+INNER JOIN weightclasses
+ON champions_weightclasses.weightclass_id = weightclasses.id
+WHERE weightclasses.id = '${classId}';`);
+
+  return rows;
+
+};
+
+
+
+module.exports = { 
+  getChamps, 
+  getOrgs, 
+  getClasses,
+  getChampsByOrg,
+  getChampsByClass
+};
