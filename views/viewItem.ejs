@@ -1,0 +1,23 @@
+<html>
+
+  <head>
+      <title>Inventory App</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <h3>Champion: <%=champ[0].name%></h3> 
+
+      <h3>Organization: <%=champ.map(champ => champ.acronym).join(", ")%></h3> 
+
+      <h3>Weight Class: <%=champ[0].class%></h3> 
+
+      <a href="/">Home</a>
+
+    </div>
+    
+  </body>
+
+</html>

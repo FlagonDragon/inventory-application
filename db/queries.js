@@ -52,6 +52,24 @@ WHERE weightclasses.id = '${classId}';`);
 
 };
 
+async function getChampById(champId) {
+
+  const { rows } = await pool.query(`SELECT champions.name, organizations.acronym, weightclasses.class
+FROM champions
+INNER JOIN champions_weightclasses
+ON champions.id = champions_weightclasses.champion_id
+INNER JOIN weightclasses
+ON champions_weightclasses.weightclass_id = weightclasses.id
+INNER JOIN champions_organizations
+ON champions.id = champions_organizations.champion_id
+INNER JOIN organizations
+ON champions_organizations.organization_id = organizations.id
+WHERE champions.id = '${champId}';`);
+
+  return rows;
+
+};
+
 
 
 module.exports = { 
@@ -59,5 +77,6 @@ module.exports = {
   getOrgs, 
   getClasses,
   getChampsByOrg,
-  getChampsByClass
+  getChampsByClass,
+  getChampById
 };

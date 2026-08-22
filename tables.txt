@@ -141,7 +141,7 @@ ON champions.id = champions_weightclasses.champion_id
 INNER JOIN weightclasses
 ON champions_weightclasses.weightclass_id = weightclasses.id;
 
-SELECT champions.name, organizations.acronym, weightclasses.class
+SELECT champions.id, champions.name, organizations.acronym, weightclasses.class
 FROM champions
 INNER JOIN champions_weightclasses
 ON champions.id = champions_weightclasses.champion_id

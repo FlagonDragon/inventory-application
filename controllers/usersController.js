@@ -52,11 +52,26 @@ async function loadClass(req, res) {
 
 };
 
+async function loadChamp(req, res) {
+
+  const { champId } = req.params;
+
+  console.log(champId);
+
+  const champ = await db.getChampById(champId);
+
+  console.log(champ);
+
+  res.render("viewItem", { champ: champ })
+
+};
+
 
 
 module.exports = {
   usersLog,
   loadHome,
   loadOrg,
-  loadClass
+  loadClass,
+  loadChamp
 };

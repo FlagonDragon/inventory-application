@@ -8,5 +8,8 @@ usersRouter.get("/organization/:orgId", usersController.loadOrg);
 
 usersRouter.get("/weightclass/:classId", usersController.loadClass);
 
+usersRouter.get("/champion/:champId", usersController.loadChamp);
+
+
 
 module.exports = usersRouter;
