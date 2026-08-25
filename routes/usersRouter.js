@@ -10,6 +10,7 @@ usersRouter.get("/weightclass/:classId", usersController.loadClass);
 
 usersRouter.get("/champion/:champId", usersController.loadChamp);
 
-
+usersRouter.get("/create", usersController.loadCreateGet);
+usersRouter.post("/create", usersController.loadCreatePost);
 
 module.exports = usersRouter;

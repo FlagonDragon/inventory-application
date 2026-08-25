@@ -66,12 +66,28 @@ async function loadChamp(req, res) {
 
 };
 
+async function loadCreateGet(req, res) {
 
+  res.render("viewCreate");
+
+};
+
+async function loadCreatePost(req, res) {
+
+  const { name, weight, org } = req.body;
+
+  console.log(name, weight, org);
+  
+  res.redirect("/");
+
+};
 
 module.exports = {
   usersLog,
   loadHome,
   loadOrg,
   loadClass,
-  loadChamp
+  loadChamp,
+  loadCreateGet,
+  loadCreatePost
 };
