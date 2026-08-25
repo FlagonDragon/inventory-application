@@ -74,19 +74,27 @@ async function loadCreateGet(req, res) {
 
 async function loadCreatePost(req, res) {
 
-  const { name, weight, org } = req.body;
+  const { type, acronym, name, weight, org } = req.body;
 
-  console.log(name, weight, org);
+  if (!type) {
 
-  await db.createChamp(name);
+    console.log(name, weight, org);
 
-  updatedChamps = await db.getChamps();
+    await db.createChamp(name);
 
-  console.log(updatedChamps);
+    updatedChamps = await db.getChamps();
 
-  await db.addToOrg(name, org);
+    console.log(updatedChamps);
 
-  await db.addToWeight(name, weight);
+    await db.addToOrg(name, org);
+
+    await db.addToWeight(name, weight);
+
+  } else {
+
+    await db.addCategory(type, name, acronym);
+
+  }
   
   res.redirect("/");
 

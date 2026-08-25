@@ -1,3 +1,4 @@
+const { loadCreateGet } = require("../controllers/usersController");
 const pool = require("./pool");
 
 async function getChamps() {
@@ -112,6 +113,34 @@ VALUES
   
 };
 
+async function addCategory(type, name, acronym) {
+
+  if (type == 'organization') {
+
+    await pool.query(`SELECT * FROM organizations`);
+
+    const { rows } = await pool.query(`INSERT INTO organizations (fullName, acronym) 
+VALUES
+  ('${name}', '${acronym}')`);
+
+    console.log(rows);
+    
+  }
+
+  if (type == 'weightclass') {
+
+    const { rows } = await pool.query(`INSERT INTO weightclasses (class) 
+VALUES
+  ('${name}')`);
+  
+    console.log(rows);
+
+  }
+
+  console.log(name);
+  
+};
+
 
 module.exports = { 
   getChamps, 
@@ -122,5 +151,6 @@ module.exports = {
   getChampById,
   createChamp, 
   addToOrg,
-  addToWeight
+  addToWeight,
+  addCategory
 };

@@ -18,8 +18,15 @@
 
   <h2>Add a category</h2>
   <form action="/create" method="POST">
-    <label for="class">Name: </label>
-    <input type="text" name="class" id="class" required>
+    <label for="type">Category: </label>
+    <select name="type" id="type" required>
+      <option value="organization">Organization</option>
+      <option value="weightclass">Weight Class</option>
+    </select>
+    <label for="name">Full name: </label>
+    <input type="text" name="name" id="name" required>
+    <label for="acronym">Acronym (Applies to organizations only): </label>
+    <input type="text" name="acronym" id="acronym">
     <button type="submit">Submit</button>
   </form>
 
