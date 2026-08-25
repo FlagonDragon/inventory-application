@@ -70,6 +70,47 @@ WHERE champions.id = '${champId}';`);
 
 };
 
+async function createChamp(name) {
+
+  await pool.query(`INSERT INTO champions (name)
+VALUES 
+  ('${name}');
+;`);
+  
+};
+
+async function addToOrg(name, org) {
+
+  const champion_id = await pool.query(`SELECT * FROM champions WHERE name = '${name}'`);
+
+  const organization_id = await pool.query(`SELECT * FROM organizations WHERE acronym = '${org}'`);
+
+console.log(name, org);
+console.log(champion_id.rows[0].id);
+console.log(organization_id.rows[0].id);
+
+  await pool.query(`INSERT INTO champions_organizations (champion_id, organization_id) 
+VALUES
+  (${champion_id.rows[0].id}, ${organization_id.rows[0].id});`);
+  
+};
+
+async function addToWeight(name, weight) {
+
+  const champion_id = await pool.query(`SELECT * FROM champions WHERE name = '${name}'`);
+
+  const weightclass_id = await pool.query(`SELECT * FROM weightclasses WHERE class = '${weight}'`);
+
+console.log(name, weight);
+console.log(champion_id.rows[0].id);
+console.log(weightclass_id.rows[0].id);
+
+  await pool.query(`INSERT INTO champions_weightclasses (champion_id, weightclass_id) 
+
+VALUES
+  (${champion_id.rows[0].id}, ${weightclass_id.rows[0].id});`);
+  
+};
 
 
 module.exports = { 
@@ -78,5 +119,8 @@ module.exports = {
   getClasses,
   getChampsByOrg,
   getChampsByClass,
-  getChampById
+  getChampById,
+  createChamp, 
+  addToOrg,
+  addToWeight
 };

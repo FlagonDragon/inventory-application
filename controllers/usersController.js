@@ -77,6 +77,16 @@ async function loadCreatePost(req, res) {
   const { name, weight, org } = req.body;
 
   console.log(name, weight, org);
+
+  await db.createChamp(name);
+
+  updatedChamps = await db.getChamps();
+
+  console.log(updatedChamps);
+
+  await db.addToOrg(name, org);
+
+  await db.addToWeight(name, weight);
   
   res.redirect("/");
 
