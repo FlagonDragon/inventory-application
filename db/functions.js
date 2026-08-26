@@ -1,6 +1,6 @@
 function makeAcro(str) {
 
-    let split = str.split('');
+    let split = str.split(' ');
 
     console.log(split);
 

@@ -27,7 +27,7 @@ async function getClasses() {
 
 async function getChampsByOrg(orgId) {
 
-  const { rows } = await pool.query(`SELECT champions.id, champions.name, organizations.fullName
+  const { rows } = await pool.query(`SELECT champions.id, champions.name, organizations.id, organizations.fullName
 FROM champions
 INNER JOIN champions_organizations
 ON champions.id = champions_organizations.champion_id
@@ -41,7 +41,7 @@ WHERE organizations.id = '${orgId}';`);
 
 async function getChampsByClass(classId) {
 
-  const { rows } = await pool.query(`SELECT champions.id, champions.name, weightclasses.class
+  const { rows } = await pool.query(`SELECT champions.id, champions.name, weightclasses.id, weightclasses.class
 FROM champions
 INNER JOIN champions_weightclasses
 ON champions.id = champions_weightclasses.champion_id
@@ -117,9 +117,7 @@ async function addCategory(type, name) {
 
   if (type == 'organization') {
 
-    await pool.query(`SELECT * FROM organizations`);
-
-    const { rows } = await pool.query(`INSERT INTO organizations (fullName, acronym) 
+    await pool.query(`INSERT INTO organizations (fullName, acronym) 
 VALUES
   ('${name}', '${myFuncs.makeAcro(name)}')`);
     
@@ -127,15 +125,44 @@ VALUES
 
   if (type == 'weightclass') {
 
-    const { rows } = await pool.query(`INSERT INTO weightclasses (class) 
+    await pool.query(`INSERT INTO weightclasses (class) 
 VALUES
   ('${name}')`);
   
-    console.log(rows);
-
   }
 
   console.log(name);
+  
+};
+
+async function editCategory(type, id, name) {
+
+  if (type == 'organization') {
+
+    console.log('we are inside query now');
+    console.log('type: '+type);
+    console.log('id: '+id);
+    console.log('name: '+name);
+    console.log('acronym: '+myFuncs.makeAcro(name));
+
+    await pool.query(`UPDATE organizations
+SET fullname = '${name}', acronym = '${myFuncs.makeAcro(name)}'
+WHERE id = ${id};`);
+    
+  }
+
+  if (type == 'weightclass') {
+
+    console.log('we are inside query now');
+    console.log('type: '+type);
+    console.log('id: '+id);
+    console.log('name: '+name);
+
+    await pool.query(`UPDATE weightclasses
+SET class = '${name}'
+WHERE id = ${id};`)
+  
+  }
   
 };
 
@@ -150,5 +177,6 @@ module.exports = {
   createChamp, 
   addToOrg,
   addToWeight,
-  addCategory
+  addCategory,
+  editCategory
 };

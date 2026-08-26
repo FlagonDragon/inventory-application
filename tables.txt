@@ -155,3 +155,7 @@ ON champions_organizations.organization_id = organizations.id;
 UPDATE champions
 SET name = 'Jaron Ennis'
 WHERE id = 1;
+
+UPDATE organizations
+SET fullname = '', acronym = ''
+WHERE id = 1;

@@ -34,7 +34,7 @@ async function loadOrg(req, res) {
 
   console.log(champs);
 
-  res.render("viewCategory", { champs: champs })
+  res.render("viewCategory", { champs: champs, orgId: orgId })
 
 };
 
@@ -48,7 +48,7 @@ async function loadClass(req, res) {
 
   console.log(champs);
 
-  res.render("viewCategory", { champs: champs })
+  res.render("viewCategory", { champs: champs, classId: classId })
 
 };
 
@@ -118,6 +118,8 @@ async function loadEditCategoryPost(req, res) {
   const { name, type, id } = req.body;
 
   console.log(name, type, id);
+
+  await db.editCategory(type, id, name);
 
   res.redirect("/");
 
