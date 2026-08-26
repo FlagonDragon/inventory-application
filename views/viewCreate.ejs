@@ -9,10 +9,19 @@
   <form action="/create" method="POST">
     <label for="name">Name: </label>
     <input type="text" name="name" id="name" required>
-    <label for="weight">Weight Class: </label>
-    <input type="text" name="weight" id="weight" required>
     <label for="org">Organization: </label>
-    <input type="text" name="org" id="org" required>
+    <select name="org" id="org" required>
+      <% orgs.forEach(org => { %>
+        <option value="<%=org.acronym%>"><%=org.acronym%></option>
+      <% }); %>
+    </select>
+    <label for="weight">Weight Class: </label>
+    <select name="weight" id="weight" required>
+      <% weights.forEach(weight => { %>
+        <option value="<%=weight.class%>"><%=weight.class%></option>
+      <% }); %>
+    </select>
+    <!-- <input type="text" name="weight" id="weight" required> -->
     <button type="submit">Submit</button>
   </form>
 
@@ -25,8 +34,6 @@
     </select>
     <label for="name">Full name: </label>
     <input type="text" name="name" id="name" required>
-    <label for="acronym">Acronym (Applies to organizations only): </label>
-    <input type="text" name="acronym" id="acronym">
     <button type="submit">Submit</button>
   </form>
 

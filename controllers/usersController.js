@@ -68,13 +68,16 @@ async function loadChamp(req, res) {
 
 async function loadCreateGet(req, res) {
 
-  res.render("viewCreate");
+  const orgs = await db.getOrgs();
+  const weights = await db.getClasses();
+
+  res.render("viewCreate", {orgs: orgs, weights: weights});
 
 };
 
 async function loadCreatePost(req, res) {
 
-  const { type, acronym, name, weight, org } = req.body;
+  const { type, name, weight, org } = req.body;
 
   if (!type) {
 
@@ -92,7 +95,7 @@ async function loadCreatePost(req, res) {
 
   } else {
 
-    await db.addCategory(type, name, acronym);
+    await db.addCategory(type, name);
 
   }
   

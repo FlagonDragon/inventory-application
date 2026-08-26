@@ -1,5 +1,5 @@
-const { loadCreateGet } = require("../controllers/usersController");
 const pool = require("./pool");
+const myFuncs = require("./functions");
 
 async function getChamps() {
 
@@ -113,7 +113,7 @@ VALUES
   
 };
 
-async function addCategory(type, name, acronym) {
+async function addCategory(type, name) {
 
   if (type == 'organization') {
 
@@ -121,9 +121,7 @@ async function addCategory(type, name, acronym) {
 
     const { rows } = await pool.query(`INSERT INTO organizations (fullName, acronym) 
 VALUES
-  ('${name}', '${acronym}')`);
-
-    console.log(rows);
+  ('${name}', '${myFuncs.makeAcro(name)}')`);
     
   }
 
