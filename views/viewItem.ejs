@@ -8,6 +8,8 @@
 
     <div class="container">
 
+      <button><a href="/edit/?type=champion&id=<%=champId%>">Update</a></button> 
+
       <h3>Champion: <%=champ[0].name%></h3> 
 
       <h3>Organization: <%=champ.map(champ => champ.acronym).join(", ")%></h3> 

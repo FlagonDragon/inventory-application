@@ -62,7 +62,7 @@ async function loadChamp(req, res) {
 
   console.log(champ);
 
-  res.render("viewItem", { champ: champ })
+  res.render("viewItem", { champ: champ, champId: champId })
 
 };
 
@@ -107,19 +107,32 @@ async function loadEditCategoryGet(req, res) {
 
   const { type, id } = req.query;
 
-  console.log(type, id);
+  if( type == 'champion') {
 
-  res.render("viewEditCategory", {type: type, id: id});
+  console.log('userscontroller editGet');
+  // console.log(name, type, id, org, weight);
+
+    const orgs = await db.getOrgs();
+    const weights = await db.getClasses();
+
+    res.render("viewEditItem", {type: type, id: id, orgs: orgs, weights: weights});
+    
+
+  } else {
+
+    res.render("viewEditCategory", {type: type, id: id});
+
+  }
+
 
 };
 
 async function loadEditCategoryPost(req, res) {
 
-  const { name, type, id } = req.body;
+  const { name, type, id, org, weight } = req.body;
 
-  console.log(name, type, id);
 
-  await db.editCategory(type, id, name);
+  await db.editCategory(type, id, name, org, weight);
 
   res.redirect("/");
 

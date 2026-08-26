@@ -135,7 +135,35 @@ VALUES
   
 };
 
-async function editCategory(type, id, name) {
+async function editCategory(type, id, name, org, weight) {
+
+  if (type == 'champion') {
+
+    console.log('we are inside champion query now');
+    console.log('type: '+type);
+    console.log('id: '+id);
+    console.log('name: '+name);
+    console.log('org: '+org);
+    console.log('weight: '+weight);
+
+    const organization_id = await pool.query(`SELECT * FROM organizations WHERE acronym = '${org}'`);
+
+    const weightclass_id = await pool.query(`SELECT * FROM weightclasses WHERE class = '${weight}'`);
+
+
+    await pool.query(`UPDATE champions
+SET name = '${name}'
+WHERE id = ${id};`);
+
+    await pool.query(`UPDATE champions_organizations
+SET organization_id = '${organization_id.rows[0].id}'
+WHERE champion_id = ${id};`);
+
+    await pool.query(`UPDATE champions_weightclasses
+SET weightclass_id = '${weightclass_id.rows[0].id}'
+WHERE champion_id = ${id};`);
+    
+  }
 
   if (type == 'organization') {
 
