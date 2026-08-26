@@ -13,4 +13,11 @@ usersRouter.get("/champion/:champId", usersController.loadChamp);
 usersRouter.get("/create", usersController.loadCreateGet);
 usersRouter.post("/create", usersController.loadCreatePost);
 
+usersRouter.get("/edit", usersController.loadEditCategoryGet);
+usersRouter.post("/edit", usersController.loadEditCategoryPost);
+
+
+
+
+
 module.exports = usersRouter;

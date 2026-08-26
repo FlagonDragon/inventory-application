@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inventory App</title>
+  </head>
+<body>
+
+  <h2>Add a champion</h2>
+  <form action="/create" method="POST">
+    <label for="name">Name: </label>
+    <input type="text" name="name" id="name" required>
+    <label for="org">Organization: </label>
+    <select name="org" id="org" required>
+      <% orgs.forEach(org => { %>
+        <option value="<%=org.acronym%>"><%=org.acronym%></option>
+      <% }); %>
+    </select>
+    <label for="weight">Weight Class: </label>
+    <select name="weight" id="weight" required>
+      <% weights.forEach(weight => { %>
+        <option value="<%=weight.class%>"><%=weight.class%></option>
+      <% }); %>
+    </select>
+    <!-- <input type="text" name="weight" id="weight" required> -->
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>Add a category</h2>
+  <form action="/create" method="POST">
+    <label for="type">Category: </label>
+    <select name="type" id="type" required>
+      <option value="organization">Organization</option>
+      <option value="weightclass">Weight Class</option>
+    </select>
+    <label for="name">Full name: </label>
+    <input type="text" name="name" id="name" required>
+    <button type="submit">Submit</button>
+  </form>
+
+  <a href="/">Back to home</a>
+
+</body>
+</html>

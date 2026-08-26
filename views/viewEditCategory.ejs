@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inventory App</title>
+  </head>
+<body>
+
+  <h2>Edit category</h2>
+  <form action="/edit" method="POST">
+    <label for="name">Updated full name: </label>
+    <input type="text" name="name" id="name" required>
+    <input type="hidden" name="type" id="type" value="<%=type%>">
+    <input type="hidden" name="id" id="id" value="<%=id%>">
+    <button type="submit">Submit</button>
+  </form>
+
+  <a href="/">Back to home</a>
+
+</body>
+</html>

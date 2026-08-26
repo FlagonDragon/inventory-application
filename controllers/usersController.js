@@ -103,6 +103,26 @@ async function loadCreatePost(req, res) {
 
 };
 
+async function loadEditCategoryGet(req, res) {
+
+  const { type, id } = req.query;
+
+  console.log(type, id);
+
+  res.render("viewEditCategory", {type: type, id: id});
+
+};
+
+async function loadEditCategoryPost(req, res) {
+
+  const { name, type, id } = req.body;
+
+  console.log(name, type, id);
+
+  res.redirect("/");
+
+};
+
 module.exports = {
   usersLog,
   loadHome,
@@ -110,5 +130,7 @@ module.exports = {
   loadClass,
   loadChamp,
   loadCreateGet,
-  loadCreatePost
+  loadCreatePost,
+  loadEditCategoryGet,
+  loadEditCategoryPost
 };
