@@ -96,6 +96,26 @@ VALUES
   
 };
 
+async function addToOrgs(name, orgsArray) {
+
+  const champion_id = await pool.query(`SELECT * FROM champions WHERE name = '${name}'`);
+
+  // const organization_id = await pool.query(`SELECT * FROM organizations WHERE acronym = '${org}'`);
+
+  // console.log(name, org);
+  // console.log(champion_id.rows[0].id);
+  // console.log(organization_id.rows[0].id);
+
+  for (let orgId of orgsArray) {
+
+    await pool.query(`INSERT INTO champions_organizations (champion_id, organization_id) 
+VALUES
+(${champion_id.rows[0].id}, ${orgId});`);
+
+  }
+  
+};
+
 async function addToWeight(name, weight) {
 
   const champion_id = await pool.query(`SELECT * FROM champions WHERE name = '${name}'`);
@@ -164,14 +184,13 @@ WHERE champion_id = ${id};`);
 
       await pool.query(`DELETE FROM champions_organizations WHERE champion_id = ${id};`);
 
-    for (let org of orgsArray) {
+    for (let orgId of orgsArray) {
 
       await pool.query(`INSERT INTO champions_organizations (champion_id, organization_id) 
 VALUES
-  (${id}, ${org});`);
+  (${id}, ${orgId});`);
 
     }
-
     
   }
 
@@ -214,6 +233,7 @@ module.exports = {
   getChampById,
   createChamp, 
   addToOrg,
+  addToOrgs,
   addToWeight,
   addCategory,
   editCategory

@@ -77,21 +77,29 @@ async function loadCreateGet(req, res) {
 
 async function loadCreatePost(req, res) {
 
-  const { type, name, weight, org } = req.body;
+  const { type, name, weight } = req.body;
 
   if (!type) {
 
-    console.log(name, weight, org);
-
     await db.createChamp(name);
 
-    updatedChamps = await db.getChamps();
-
-    console.log(updatedChamps);
-
-    await db.addToOrg(name, org);
-
     await db.addToWeight(name, weight);
+
+    console.log(req.body);
+  
+    let orgsArray = [];
+
+    for (let key in req.body) {
+    
+      if (Number.isInteger(Number(key))) {
+        orgsArray.push(Number(key));
+      }
+
+    }
+
+    console.log(orgsArray);
+
+    await db.addToOrgs(name, orgsArray);
 
   } else {
 
@@ -130,7 +138,7 @@ async function loadEditGet(req, res) {
 
 async function loadEditPost(req, res) {
 
-  const { name, type, id, org, weight} = req.body;
+  const { name, type, id, weight} = req.body;
 
   console.log(req.body);
   

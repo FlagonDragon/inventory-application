@@ -9,12 +9,13 @@
   <form action="/create" method="POST">
     <label for="name">Name: </label>
     <input type="text" name="name" id="name" required>
-    <label for="org">Organization: </label>
-    <select name="org" id="org" required>
-      <% orgs.forEach(org => { %>
-        <option value="<%=org.acronym%>"><%=org.acronym%></option>
-      <% }); %>
-    </select>
+
+    <div>Organizations:</div>  
+    <% orgs.forEach(org => { %>
+      <input type="checkbox" id="<%=org.id%>" name="<%=org.id%>" value="<%=org.id%>">
+      <label for="<%=org.id%>"> <%=org.acronym%> </label><br>
+    <% }); %>
+
     <label for="weight">Weight Class: </label>
     <select name="weight" id="weight" required>
       <% weights.forEach(weight => { %>

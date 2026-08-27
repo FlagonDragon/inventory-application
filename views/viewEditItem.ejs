@@ -10,11 +10,10 @@
     <label for="name">Updated Name: </label>
     <input type="text" name="name" id="name" required>
 
+    <div>Updated Organizations:</div>  
     <% orgs.forEach(org => { %>
-
       <input type="checkbox" id="<%=org.id%>" name="<%=org.id%>" value="<%=org.id%>">
       <label for="<%=org.id%>"> <%=org.acronym%> </label><br>
-
     <% }); %>
 
     <label for="weight">Updated Weight Class: </label>
