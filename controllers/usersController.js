@@ -114,6 +114,7 @@ async function loadEditGet(req, res) {
 
     const orgs = await db.getOrgs();
     const weights = await db.getClasses();
+    let orgsArray = [];
 
     res.render("viewEditItem", {type: type, id: id, orgs: orgs, weights: weights});
     
@@ -129,10 +130,23 @@ async function loadEditGet(req, res) {
 
 async function loadEditPost(req, res) {
 
-  const { name, type, id, org, weight } = req.body;
+  const { name, type, id, org, weight} = req.body;
 
+  console.log(req.body);
+  
+  let orgsArray = [];
 
-  await db.editCategory(type, id, name, org, weight);
+  for (let key in req.body) {
+  
+    if (Number.isInteger(Number(key))) {
+      orgsArray.push(Number(key));
+    }
+
+  }
+
+  console.log(orgsArray);
+  
+  await db.editCategory(type, id, name, weight, orgsArray);
 
   res.redirect("/");
 

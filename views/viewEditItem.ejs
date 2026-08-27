@@ -9,18 +9,21 @@
   <form action="/edit" method="POST">
     <label for="name">Updated Name: </label>
     <input type="text" name="name" id="name" required>
-    <label for="org">Updated Organization: </label>
-    <select name="org" id="org" required>
-      <% orgs.forEach(org => { %>
-        <option value="<%=org.acronym%>"><%=org.acronym%></option>
-      <% }); %>
-    </select>
+
+    <% orgs.forEach(org => { %>
+
+      <input type="checkbox" id="<%=org.id%>" name="<%=org.id%>" value="<%=org.id%>">
+      <label for="<%=org.id%>"> <%=org.acronym%> </label><br>
+
+    <% }); %>
+
     <label for="weight">Updated Weight Class: </label>
     <select name="weight" id="weight" required>
       <% weights.forEach(weight => { %>
         <option value="<%=weight.class%>"><%=weight.class%></option>
       <% }); %>
     </select>
+    
     <input type="hidden" name="type" id="type" value="<%=type%>">
     <input type="hidden" name="id" id="id" value="<%=id%>">
     <button type="submit">Submit</button>

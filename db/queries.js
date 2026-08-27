@@ -135,7 +135,7 @@ VALUES
   
 };
 
-async function editCategory(type, id, name, org, weight) {
+async function editCategory(type, id, name, weight, orgsArray) {
 
   if (type == 'champion') {
 
@@ -143,25 +143,35 @@ async function editCategory(type, id, name, org, weight) {
     console.log('type: '+type);
     console.log('id: '+id);
     console.log('name: '+name);
-    console.log('org: '+org);
     console.log('weight: '+weight);
+    console.log('org: '+orgsArray);
 
-    const organization_id = await pool.query(`SELECT * FROM organizations WHERE acronym = '${org}'`);
-
-    const weightclass_id = await pool.query(`SELECT * FROM weightclasses WHERE class = '${weight}'`);
-
+    // Update Name
 
     await pool.query(`UPDATE champions
 SET name = '${name}'
 WHERE id = ${id};`);
 
-    await pool.query(`UPDATE champions_organizations
-SET organization_id = '${organization_id.rows[0].id}'
-WHERE champion_id = ${id};`);
+    // Update Weight Class
+
+    const weightclass_id = await pool.query(`SELECT * FROM weightclasses WHERE class = '${weight}'`);
 
     await pool.query(`UPDATE champions_weightclasses
 SET weightclass_id = '${weightclass_id.rows[0].id}'
 WHERE champion_id = ${id};`);
+
+    // Update Organizations using array of ids
+
+      await pool.query(`DELETE FROM champions_organizations WHERE champion_id = ${id};`);
+
+    for (let org of orgsArray) {
+
+      await pool.query(`INSERT INTO champions_organizations (champion_id, organization_id) 
+VALUES
+  (${id}, ${org});`);
+
+    }
+
     
   }
 
