@@ -10,6 +10,10 @@
 
       <button><a href="/edit/?type=champion&id=<%=champId%>">Update</a></button> 
 
+      <%console.log(champ)%>
+
+      <% if (champ[0]) { %>
+
       <h3>Champion: <%=champ[0].name%></h3> 
 
       <h3>Organization: <%=champ.map(champ => champ.acronym).join(", ")%></h3> 
@@ -17,6 +21,12 @@
       <h3>Weight Class: <%=champ[0].class%></h3> 
 
       <a href="/">Home</a>
+
+      <% } else { %>
+
+        <h2>Data missing, please update!</h2>
+
+      <% } %>
 
     </div>
     
