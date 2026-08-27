@@ -10,7 +10,7 @@
 
       <!-- orgs have fullname column while weightclasses have class column. Ternary allows us to differentiate them -->
 
-      <h3><%= (champs[0].fullname) ? champs[0].fullname : champs[0].class %> <button><a href="/edit?type=<%= (champs[0].fullname) ? 'organization' : 'weightclass'%>&id=<%= (champs[0].fullname) ? orgId : classId%>">Update</a></button><button><a>Delete</a></button> </h3> 
+      <h3><%= (champs[0].fullname) ? champs[0].fullname : champs[0].class %> <button><a href="/edit?type=<%= (champs[0].fullname) ? 'organization' : 'weightclass'%>&id=<%= (champs[0].fullname) ? orgId : classId%>">Update</a></button> </h3> 
 
       <% champs.forEach(champ => { %>
 

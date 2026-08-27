@@ -223,6 +223,27 @@ WHERE id = ${id};`)
   
 };
 
+async function deleteInfo(type, id) {
+
+  if (type == 'champion') {
+
+    await pool.query(`DELETE FROM champions WHERE id = ${id}`);
+
+  }
+
+  if (type == 'organization') {
+
+    await pool.query(`DELETE FROM organizations WHERE id = ${id}`);
+
+  }
+
+  if (type == 'weightclass') {
+
+    await pool.query(`DELETE FROM weightclasses WHERE id = ${id}`);
+
+  }
+
+};
 
 module.exports = { 
   getChamps, 
@@ -236,5 +257,6 @@ module.exports = {
   addToOrgs,
   addToWeight,
   addCategory,
-  editCategory
+  editCategory,
+  deleteInfo
 };

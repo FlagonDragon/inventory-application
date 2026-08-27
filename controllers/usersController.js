@@ -1,3 +1,4 @@
+const e = require("express");
 const db = require("../db/queries");
 
 async function usersLog(req, res) {
@@ -138,9 +139,20 @@ async function loadEditGet(req, res) {
 
 async function loadEditPost(req, res) {
 
-  const { name, type, id, weight} = req.body;
+  const { name, type, id, weight, deleteData} = req.body;
 
   console.log(req.body);
+
+  if (deleteData == 'yes') {
+
+    console.log(type, id);
+    
+    await db.deleteInfo(type, id);
+
+    res.redirect("/");
+
+    return;
+  }
   
   let orgsArray = [];
 
