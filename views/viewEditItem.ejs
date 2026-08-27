@@ -28,5 +28,16 @@
 
   <a href="/">Back to home</a>
 
+  <form action="/edit" method="POST">
+    <label for="org">Delete Champion: </label>
+    <select name="delete" id="delete" required>
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+    </select>
+    <input type="hidden" name="type" id="type" value="<%=type%>">
+    <input type="hidden" name="id" id="id" value="<%=id%>">
+    <button type="submit">Submit</button>
+  </form>
+
 </body>
 </html>

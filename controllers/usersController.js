@@ -103,7 +103,7 @@ async function loadCreatePost(req, res) {
 
 };
 
-async function loadEditCategoryGet(req, res) {
+async function loadEditGet(req, res) {
 
   const { type, id } = req.query;
 
@@ -127,7 +127,7 @@ async function loadEditCategoryGet(req, res) {
 
 };
 
-async function loadEditCategoryPost(req, res) {
+async function loadEditPost(req, res) {
 
   const { name, type, id, org, weight } = req.body;
 
@@ -146,6 +146,6 @@ module.exports = {
   loadChamp,
   loadCreateGet,
   loadCreatePost,
-  loadEditCategoryGet,
-  loadEditCategoryPost
+  loadEditGet,
+  loadEditPost
 };
