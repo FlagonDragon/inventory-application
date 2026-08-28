@@ -139,9 +139,27 @@ async function loadEditGet(req, res) {
 
 async function loadEditPost(req, res) {
 
-  const { name, type, id, weight, deleteData} = req.body;
+  const { name, type, id, weight, deleteData, password} = req.body;
 
   console.log(req.body);
+
+  if (password != 'a') {
+
+    console.log('Wrong password!');
+
+    res.render("viewWrongPW");
+
+    return;
+
+  }
+
+  if (deleteData == 'no') {
+
+    res.redirect("/");
+
+    return;
+
+  }
 
   if (deleteData == 'yes') {
 

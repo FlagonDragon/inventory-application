@@ -9,6 +9,8 @@
   <form action="/edit" method="POST">
     <label for="name">Updated full name: </label>
     <input type="text" name="name" id="name" required>
+    <label for="password">Password: </label>
+    <input type="text" name="password" id="password" required>
     <input type="hidden" name="type" id="type" value="<%=type%>">
     <input type="hidden" name="id" id="id" value="<%=id%>">
     <button type="submit">Submit</button>
@@ -22,6 +24,8 @@
         <option value="no">No</option>
         <option value="yes">Yes</option>
     </select>
+    <label for="password">Password: </label>
+    <input type="text" name="password" id="password" required>
     <input type="hidden" name="type" id="type" value="<%=type%>">
     <input type="hidden" name="id" id="id" value="<%=id%>">
     <button type="submit">Submit</button>
