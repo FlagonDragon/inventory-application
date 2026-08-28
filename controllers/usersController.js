@@ -143,7 +143,7 @@ async function loadEditPost(req, res) {
 
   console.log(req.body);
 
-  if (password != 'a') {
+  if (password != process.env.EDITPW) {
 
     console.log('Wrong password!');
 
