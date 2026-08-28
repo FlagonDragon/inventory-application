@@ -37,3 +37,12 @@ button {
     margin: 5px;
     border-radius: 10px;
 }
+
+h3 {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+input {
+    margin: 10px;
+}

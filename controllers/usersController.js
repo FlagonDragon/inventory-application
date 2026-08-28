@@ -35,7 +35,7 @@ async function loadOrg(req, res) {
 
   console.log(champs);
 
-  res.render("viewCategory", { champs: champs, orgId: orgId })
+  res.render("viewCategory", { champs: champs, type: 'organization', orgId: orgId })
 
 };
 
@@ -49,7 +49,7 @@ async function loadClass(req, res) {
 
   console.log(champs);
 
-  res.render("viewCategory", { champs: champs, classId: classId })
+  res.render("viewCategory", { champs: champs, type: 'weightclass', classId: classId })
 
 };
 

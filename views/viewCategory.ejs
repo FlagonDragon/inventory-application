@@ -9,9 +9,11 @@
 
     <div class="container">
 
+      <% if (champs[0]) { %>
+
       <!-- orgs have fullname column while weightclasses have class column. Ternary allows us to differentiate them -->
 
-      <h2><%= (champs[0].fullname) ? champs[0].fullname : champs[0].class %> <button><a href="/edit?type=<%= (champs[0].fullname) ? 'organization' : 'weightclass'%>&id=<%= (champs[0].fullname) ? orgId : classId%>">Update</a></button> </h2> 
+      <h2><%= (champs[0].fullname) ? champs[0].fullname : champs[0].class %> <button><a href="/edit?type=<%=type%>&id=<%= (champs[0].fullname) ? orgId : classId%>">Update</a></button> </h2> 
 
       <h3>Champions:</h3>
 
@@ -26,6 +28,14 @@
         </a>
 
       <% }); %>
+
+      <% } else { %>
+
+        <button><a href="/edit?type=<%=type%>&id=<%= (type == 'organization') ? orgId : classId%>">Update</a></button>
+
+        <h2>This is empty!</h2>
+
+      <% } %>
 
     </div>
     
