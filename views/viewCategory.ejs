@@ -3,7 +3,6 @@
   <head>
       <title>Inventory App</title>
       <link type="text/css" href="/css/styles.css" rel="stylesheet">
-
   </head>
 
   <body>
@@ -12,15 +11,17 @@
 
       <!-- orgs have fullname column while weightclasses have class column. Ternary allows us to differentiate them -->
 
-      <h3><%= (champs[0].fullname) ? champs[0].fullname : champs[0].class %> <button><a href="/edit?type=<%= (champs[0].fullname) ? 'organization' : 'weightclass'%>&id=<%= (champs[0].fullname) ? orgId : classId%>">Update</a></button> </h3> 
+      <h2><%= (champs[0].fullname) ? champs[0].fullname : champs[0].class %> <button><a href="/edit?type=<%= (champs[0].fullname) ? 'organization' : 'weightclass'%>&id=<%= (champs[0].fullname) ? orgId : classId%>">Update</a></button> </h2> 
+
+      <h3>Champions:</h3>
 
       <% champs.forEach(champ => { %>
 
         <a href="/champion/<%=champ.id%>">
 
-          <div>
-            Champion: <%=champ.name%>
-          </div>
+          <p>
+            <%=champ.name%>
+          </p>
 
         </a>
 

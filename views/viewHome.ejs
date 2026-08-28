@@ -3,7 +3,6 @@
   <head>
       <title>Inventory App</title>
       <link type="text/css" href="/css/styles.css" rel="stylesheet">
-
   </head>
 
   <body>
@@ -17,15 +16,15 @@
 
     <div class="container">
 
-      <h3><%= title1 %></h3> 
+      <h1><%= title1 %></h3> 
 
       <% categories1.forEach(category => { %>
 
         <a href="/organization/<%=category.id%>">
 
-          <div>
-            Organization: <%=category.acronym%>
-          </div>
+          <p>
+            <%=category.acronym%>
+          </p>
 
         </a>
 
@@ -35,15 +34,15 @@
 
     <div class="container">
 
-      <h3><%= title2 %></h3> 
+      <h1><%= title2 %></h3> 
 
       <% categories2.forEach(category => { %>
 
         <a href="/weightclass/<%=category.id%>">
 
-          <div>
-            Weight Class: <%=category.class%>
-          </div>
+          <p>
+            <%=category.class%>
+          </p>
 
         </a>
 

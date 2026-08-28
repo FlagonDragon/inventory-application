@@ -4,10 +4,36 @@
 }
 
 body {
-    background-color: lemonchiffon;
+    background-color: chocolate;
+    color: wheat;
+    /* border: 2px solid green; */
+    margin: 15px;
 }
 
-button a{
+a {
     text-decoration: none;
     color: black;
+}
+
+a:hover {
+    color: darkviolet;
+}
+
+button a:hover {
+    color: black;
+}
+
+p {
+    margin: 15px;
+}
+
+p:hover {
+    font-size: 1.1em;
+}
+
+button {
+    height: 25px;
+    width: 60px;
+    margin: 5px;
+    border-radius: 10px;
 }
