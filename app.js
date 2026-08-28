@@ -1,9 +1,15 @@
 const express = require("express");
 const app = express();
+
+// Source - https://stackoverflow.com/a/72024831
+// Posted by Suhasini
+// Retrieved 2026-08-28, License - CC BY-SA 4.0
+
+app.use('/css',express.static('public' +'/css'));
+
 const path = require("node:path");
-const { send } = require("node:process");
 const usersRouter = require("./routes/usersRouter");
-const pool = require("./db/pool");
+
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
