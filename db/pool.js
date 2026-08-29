@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 require('dotenv').config();
 
 module.exports = new Pool({
-  connectionString: `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST}:5432/${process.env.PGDATABASE}`
+  connectionString: `postgresql://${process.env.PGUSER}:${process.env.PGPASSWORD}@${process.env.PGHOST}/${process.env.PGDATABASE}`
 });
 
 // const pool = new Pool({
