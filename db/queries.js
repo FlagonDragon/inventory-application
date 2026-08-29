@@ -86,10 +86,6 @@ async function addToOrg(name, org) {
 
   const organization_id = await pool.query(`SELECT * FROM organizations WHERE acronym = '${org}'`);
 
-console.log(name, org);
-console.log(champion_id.rows[0].id);
-console.log(organization_id.rows[0].id);
-
   await pool.query(`INSERT INTO champions_organizations (champion_id, organization_id) 
 VALUES
   (${champion_id.rows[0].id}, ${organization_id.rows[0].id});`);
@@ -99,12 +95,6 @@ VALUES
 async function addToOrgs(name, orgsArray) {
 
   const champion_id = await pool.query(`SELECT * FROM champions WHERE name = '${name}'`);
-
-  // const organization_id = await pool.query(`SELECT * FROM organizations WHERE acronym = '${org}'`);
-
-  // console.log(name, org);
-  // console.log(champion_id.rows[0].id);
-  // console.log(organization_id.rows[0].id);
 
   for (let orgId of orgsArray) {
 
@@ -121,10 +111,6 @@ async function addToWeight(name, weight) {
   const champion_id = await pool.query(`SELECT * FROM champions WHERE name = '${name}'`);
 
   const weightclass_id = await pool.query(`SELECT * FROM weightclasses WHERE class = '${weight}'`);
-
-console.log(name, weight);
-console.log(champion_id.rows[0].id);
-console.log(weightclass_id.rows[0].id);
 
   await pool.query(`INSERT INTO champions_weightclasses (champion_id, weightclass_id) 
 
@@ -159,13 +145,6 @@ async function editCategory(type, id, name, weight, orgsArray) {
 
   if (type == 'champion') {
 
-    console.log('we are inside champion query now');
-    console.log('type: '+type);
-    console.log('id: '+id);
-    console.log('name: '+name);
-    console.log('weight: '+weight);
-    console.log('org: '+orgsArray);
-
     // Update Name
 
     await pool.query(`UPDATE champions
@@ -196,12 +175,6 @@ VALUES
 
   if (type == 'organization') {
 
-    console.log('we are inside query now');
-    console.log('type: '+type);
-    console.log('id: '+id);
-    console.log('name: '+name);
-    console.log('acronym: '+myFuncs.makeAcro(name));
-
     await pool.query(`UPDATE organizations
 SET fullname = '${name}', acronym = '${myFuncs.makeAcro(name)}'
 WHERE id = ${id};`);
@@ -209,11 +182,6 @@ WHERE id = ${id};`);
   }
 
   if (type == 'weightclass') {
-
-    console.log('we are inside query now');
-    console.log('type: '+type);
-    console.log('id: '+id);
-    console.log('name: '+name);
 
     await pool.query(`UPDATE weightclasses
 SET class = '${name}'

@@ -2,8 +2,6 @@ function makeAcro(str) {
 
     let split = str.split(' ');
 
-    console.log(split);
-
     let myAcronym = [];
 
     split.forEach(word => {

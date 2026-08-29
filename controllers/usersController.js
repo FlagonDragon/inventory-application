@@ -1,25 +1,9 @@
-const e = require("express");
 const db = require("../db/queries");
-
-async function usersLog(req, res) {
-
-  const champs = await db.getChamps();
-
-  console.log(champs);
-
-  res.send('hullo')
-
-};
 
 async function loadHome(req, res) {
 
   const orgs = await db.getOrgs();
   const classes = await db.getClasses();
-  // const champs = await db.getChamps();
-
-  // console.log(orgs);
-  // console.log(classes);
-  // console.log(champs);
 
   res.render("viewHome", {title1: 'Organizations', categories1: orgs, title2: 'Weight Classes', categories2: classes })
 
@@ -29,11 +13,7 @@ async function loadOrg(req, res) {
 
   const { orgId } = req.params;
 
-  console.log(orgId);
-
   const champs = await db.getChampsByOrg(orgId);
-
-  console.log(champs);
 
   res.render("viewCategory", { champs: champs, type: 'organization', orgId: orgId })
 
@@ -43,11 +23,7 @@ async function loadClass(req, res) {
 
   const { classId } = req.params;
 
-  console.log(classId);
-
   const champs = await db.getChampsByClass(classId);
-
-  console.log(champs);
 
   res.render("viewCategory", { champs: champs, type: 'weightclass', classId: classId })
 
@@ -57,11 +33,7 @@ async function loadChamp(req, res) {
 
   const { champId } = req.params;
 
-  console.log(champId);
-
   const champ = await db.getChampById(champId);
-
-  console.log(champ);
 
   res.render("viewItem", { champ: champ, champId: champId })
 
@@ -85,8 +57,6 @@ async function loadCreatePost(req, res) {
     await db.createChamp(name);
 
     await db.addToWeight(name, weight);
-
-    console.log(req.body);
   
     let orgsArray = [];
 
@@ -97,8 +67,6 @@ async function loadCreatePost(req, res) {
       }
 
     }
-
-    console.log(orgsArray);
 
     await db.addToOrgs(name, orgsArray);
 
@@ -117,9 +85,6 @@ async function loadEditGet(req, res) {
   const { type, id } = req.query;
 
   if( type == 'champion') {
-
-  console.log('userscontroller editGet');
-  // console.log(name, type, id, org, weight);
 
     const orgs = await db.getOrgs();
     const weights = await db.getClasses();
@@ -141,11 +106,7 @@ async function loadEditPost(req, res) {
 
   const { name, type, id, weight, deleteData, password} = req.body;
 
-  console.log(req.body);
-
   if (password != process.env.EDITPW) {
-
-    console.log('Wrong password!');
 
     res.render("viewWrongPW");
 
@@ -162,8 +123,6 @@ async function loadEditPost(req, res) {
   }
 
   if (deleteData == 'yes') {
-
-    console.log(type, id);
     
     await db.deleteInfo(type, id);
 
@@ -174,6 +133,8 @@ async function loadEditPost(req, res) {
   
   let orgsArray = [];
 
+  // for loop singles out keys with numbers with are table ids of checked organizations in form
+
   for (let key in req.body) {
   
     if (Number.isInteger(Number(key))) {
@@ -181,8 +142,6 @@ async function loadEditPost(req, res) {
     }
 
   }
-
-  console.log(orgsArray);
   
   await db.editCategory(type, id, name, weight, orgsArray);
 
@@ -191,7 +150,6 @@ async function loadEditPost(req, res) {
 };
 
 module.exports = {
-  usersLog,
   loadHome,
   loadOrg,
   loadClass,

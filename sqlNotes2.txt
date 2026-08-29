@@ -1,0 +1,141 @@
+// Tables
+
+CREATE TABLE champions (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   name VARCHAR ( 30 )
+);
+
+CREATE TABLE weightClasses (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   class VARCHAR ( 30 ) 
+);
+
+CREATE TABLE organizations (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   fullName VARCHAR ( 50 ),
+   acronym VARCHAR (5)
+);
+
+CREATE TABLE champions_organizations (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   champion_id INTEGER,
+   organization_id INTEGER 
+);
+
+CREATE TABLE champions_weightclasses (
+   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+   champion_id INTEGER,
+   weightclass_id INTEGER 
+);
+
+// Table values
+
+INSERT INTO champions (name)
+VALUES 
+  ('Jaron Ennis'),
+  ('Sebastian Fundora'),
+  ('Josh Kelly'),
+  ('Teofimo Lopez'),
+  ('Ryan Garcia'),
+  ('Liam Paro'),
+  ('Devin Haney'),
+  ('Gary Russell'),
+  ('Dalton Smith'),
+  ('Richardson Hitchins'),
+  ('Shakur Stevenson'),
+  ('William Zepeda'),
+  ('Raymond Muratalla'),
+  ('Abdullah Mason'),
+  ('Anthony Cacace'),
+  ('Oshaquie Foster'),
+  ('Emanuel Navarrete'),
+  ('Brandon Figueroa'),
+  ('Bruce Carrington'),
+  ('Angelo Leo'),
+  ('Rafael Espinoza'),
+  ('Naoya Inoue'),
+  ('Jesse Rodriguez'),
+  ('Takuma Inoue'),
+  ('Jose Salas'),
+  ('Cristian Medina');
+
+INSERT INTO organizations (fullName, acronym) 
+VALUES
+  ('World Boxing Association', 'WBA'),
+  ('World Boxing Council', 'WBC'),
+  ('International Boxing Federation', 'IBF'),
+  ('World Boxing Organization', 'WBO');
+
+INSERT INTO weightClasses (class) 
+VALUES
+  ('Super Welterweight'),
+  ('Welterweight'),
+  ('Super Lightweight'),
+  ('Lightweight'),
+  ('Super Featherweight'),
+  ('Featherweight'),
+  ('Super Bantamweight'),
+  ('Bantamweight');
+  
+INSERT INTO champions_organizations (champion_id, organization_id) 
+VALUES
+  (1, 1),
+  (1, 4),
+  (2, 2),
+  (3, 3),
+  (4, 1),
+  (5, 2),
+  (6, 3),
+  (7, 4),
+  (8, 1),
+  (9, 2),
+  (10, 3),
+  (11, 4),
+  (12, 2),
+  (13, 3),
+  (14, 4),
+  (15, 1),
+  (16, 2),
+  (17, 3),
+  (17, 4),
+  (18, 1),
+  (19, 2),
+  (20, 3),
+  (21, 4),
+  (22, 1),
+  (22, 2),
+  (22, 3),
+  (22, 4),
+  (23, 1),
+  (24, 2),
+  (25, 3),
+  (26, 4);
+
+INSERT INTO champions_weightclasses (champion_id, weightclass_id) 
+VALUES
+  (1, 1),
+  (2, 1),
+  (3, 1),
+  (4, 2),
+  (5, 2),
+  (6, 2),
+  (7, 2),
+  (8, 3),
+  (9, 3),
+  (10, 3),
+  (11, 3),
+  (12, 4),
+  (13, 4),
+  (14, 4),
+  (15, 5),
+  (16, 5),
+  (17, 5),
+  (18, 6),
+  (19, 6),
+  (20, 6),
+  (21, 6),
+  (22, 7),
+  (23, 8),
+  (24, 8),
+  (25, 8),
+  (26, 8);

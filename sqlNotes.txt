@@ -1,0 +1,47 @@
+SQL joins
+
+https://www.sqlteaching.com/#!multiple_joins
+SQL teaching multiple joins solution:
+
+SELECT character.name, actor.name
+FROM character
+INNER JOIN character_actor
+ON character.id = character_actor.character_id
+INNER JOIN actor
+ON character_actor.actor_id = actor.id;
+
+Multiple join example:
+https://teamtreehouse.com/community/sql-for-multiple-values-in-a-cell
+
+SELECT champions.name, organizations.acronym
+FROM champions
+INNER JOIN champions_organizations
+ON champions.id = champions_organizations.champion_id
+INNER JOIN organizations
+ON champions_organizations.organization_id = organizations.id;
+
+SELECT champions.name, weightclasses.class
+FROM champions
+INNER JOIN champions_weightclasses
+ON champions.id = champions_weightclasses.champion_id
+INNER JOIN weightclasses
+ON champions_weightclasses.weightclass_id = weightclasses.id;
+
+SELECT champions.id, champions.name, organizations.acronym, weightclasses.class
+FROM champions
+INNER JOIN champions_weightclasses
+ON champions.id = champions_weightclasses.champion_id
+INNER JOIN weightclasses
+ON champions_weightclasses.weightclass_id = weightclasses.id
+INNER JOIN champions_organizations
+ON champions.id = champions_organizations.champion_id
+INNER JOIN organizations
+ON champions_organizations.organization_id = organizations.id;
+
+UPDATE champions
+SET name = 'Jaron Ennis'
+WHERE id = 1;
+
+UPDATE organizations
+SET fullname = '', acronym = ''
+WHERE id = 1;
